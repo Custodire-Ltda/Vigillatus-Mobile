@@ -15,7 +15,7 @@ const colaboradoresSchema = new Schema({
     telefone: String,
     registro: String,
 
-    setor: String,
+    setor: String,  
     cargo: String,
 
     gestorId: {

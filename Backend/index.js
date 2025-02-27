@@ -27,7 +27,7 @@ import cargoRouter from './routes/Cargo.routes.js'
 app.listen(port, () => {
     console.log(`Server on: http://localhost:${port}`);
 
-    Mongoose.connect('mongodb+srv://admin:admin@vigillatus.b1syd.mongodb.net/Vigillatus?retryWrites=true&w=majority&appName=Vigillatus')
+    Mongoose.connect('mongodb://127.0.0.1:27017/Vigillatus')
         .then(() => {
             console.log('Connected to database');
         })

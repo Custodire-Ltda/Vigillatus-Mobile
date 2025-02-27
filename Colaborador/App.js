@@ -7,6 +7,7 @@ import Main from "./src/pages/Main";
 import Ocorrencias from "./src/pages/Ocorrencias";
 import Ocorrencia from "./src/pages/Ocorrencia";
 import Report from "./src/pages/Report";
+import Login from "./src/pages/Login"
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,6 +52,11 @@ export default function App() {
           },
         }}
       >
+        <Stack.Screen
+          name="Login"
+          component={Login} 
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="Ocorrencias"
           component={Tabs}

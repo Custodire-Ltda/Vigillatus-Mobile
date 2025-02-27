@@ -25,7 +25,7 @@ export default function Profile() {
         {collaborator && (
           <View style={Styles.profile}>
             <Image style={Styles.imageProfile} source={require("../../images/occurrenceImage.png")}/>
-            <Text style={Styles.textProfile}>{collaborator.firstName}</Text>
+            <Text style={Styles.textProfile}>{collaborator.nome}</Text>
           </View>
         )}
         </View>

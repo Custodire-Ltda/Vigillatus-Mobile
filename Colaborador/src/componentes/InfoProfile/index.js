@@ -3,7 +3,7 @@ import { View, Text, Image } from "react-native";
 import InfoRow from "../../componentes/InfoRow/index";
 import { fetchCollaboratorData } from "../../API/api";
 import Styles from "./styles.js";
-import formatLastName from "../../componentes/formatLastName/index.js";
+//import formatLastName from "../../componentes/formatLastName/index.js";
 
 export default function Profile({ exit }) {
   const [collaborator, setCollaborator] = useState(null);
@@ -29,7 +29,7 @@ export default function Profile({ exit }) {
     );
   }
 
-  const formattedFullName = `${collaborator.firstName} ${formatLastName(collaborator.lastName)}`;
+ // const formattedFullName = `${collaborator.firstName} ${formatLastName(collaborator.lastName)}`;
 
   return (
     <View style={Styles.container}>
@@ -46,7 +46,7 @@ export default function Profile({ exit }) {
             <View style={Styles.bodyCollborator}>
               <InfoRow
                 label="Nome"
-                value={formattedFullName}
+                value={collaborator.nome}
                 blackStyle={{ marginLeft: "3%" }}
                 spaceStyle={{ marginBottom: "3%" }}
               />

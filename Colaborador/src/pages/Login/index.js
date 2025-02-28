@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import Styles from "./styles";
 import globalStyles from "../../Styles/globalStyles";
+import Button from "../../componentes/Button";
 
 
 export default function Login({navigation}){
@@ -53,9 +54,7 @@ export default function Login({navigation}){
           autoCorrect={false}
           onChange={() => {}}
         />
-        <TouchableOpacity onPress={() => navigation.navigate("Ocorrencias")}>
-          <Text>Acessar</Text>
-        </TouchableOpacity>
+          <Button page='Ocorrencias' navigation={navigation} text='Acessar' icon={null}/>
       </Animated.View>
     </KeyboardAvoidingView>
   );

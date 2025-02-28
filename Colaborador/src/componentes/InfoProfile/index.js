@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import InfoRow from "../../componentes/InfoRow/index";
 import { fetchCollaboratorData } from "../../API/api";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import Styles from "./styles.js";
+import { useNavigation } from '@react-navigation/native';
 //import formatLastName from "../../componentes/formatLastName/index.js";
 
-export default function Profile({ exit }) {
+export default function Profile() {
   const [collaborator, setCollaborator] = useState(null);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const getCollaboratorData = async () => {
@@ -33,9 +36,9 @@ export default function Profile({ exit }) {
 
   return (
     <View style={Styles.container}>
-      <View style={Styles.containerExit}>
-        {exit}
-      </View>
+      <TouchableOpacity style={Styles.containerExit} onPress={() => navigation.navigate("Login")} >
+        <Ionicons name="exit" size={45} color="#A29F9F" />
+      </TouchableOpacity>
       <View style={Styles.teste}>
         <Image
           style={Styles.imageProfile}
@@ -46,7 +49,7 @@ export default function Profile({ exit }) {
             <View style={Styles.bodyCollborator}>
               <InfoRow
                 label="Nome"
-                value={collaborator.nome}
+                value={collaborator.nomeColaborador}
                 blackStyle={{ marginLeft: "3%" }}
                 spaceStyle={{ marginBottom: "3%" }}
               />

@@ -32,17 +32,6 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 1,
       },
-      buttonError:{
-        backgroundColor:"#FF0000",
-        width:"40%",
-        height:"auto",
-        borderRadius:10,
-        alignItems:"center"
-      },
-      buttonicon:{
-        margin:"8%",
-      }
-
 });
 
 export default styles

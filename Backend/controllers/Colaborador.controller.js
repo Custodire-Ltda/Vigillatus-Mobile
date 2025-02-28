@@ -1,4 +1,5 @@
 import Colaborador from '../models/Colaborador.model.js';
+import jwt from 'jsonwebtoken';
 import authMiddleware from '../Middleware/authmiddleware.js';
 
 const CadastrarColaborador = async (req, res) => {
@@ -32,6 +33,39 @@ const CadastrarColaborador = async (req, res) => {
     }
 };
 
+const Login = async (req, res) => {
+    try {
+        const { nome, email } = req.body;
+
+        const colaborador = await Colaborador.findOne({ email });
+
+        if (!colaborador) {
+            return res.status(400).json({ message: 'Email não encontrado' });
+        }
+
+        const nomeValido = nome == colaborador.nome;
+
+        if (!nomeValido) {
+            return res.status(400).json({ message: 'Senha incorreta' });
+        }
+
+        // Gera um token JWT com as informações do colaborador e define a expiração
+        const token = jwt.sign(
+            { id: colaborador._id, email: colaborador.email },
+            'Secret', // Substituir 'Secret' por uma chave secreta mais segura em produção
+            { expiresIn: '1h' } // Token expira em 1 hora
+        );
+
+        // Cria um novo objeto colaborador sem a propriedade 'senha'
+        const { senha: _, ...colaboradorTrimmed } = colaborador.toObject();
+
+        res.status(200).json({ message: 'Login de colaborador realizado com sucesso', token, colaborador: colaboradorTrimmed });
+
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 const getColaborador = async (req, res) => {
     try {
         const colaborador = await Colaborador.findById(req.params.id);
@@ -48,7 +82,14 @@ const getColaborador = async (req, res) => {
 
 const ColaboradoresDoGestor = async (req, res) => {
     try {
-        const colaboradores = await Colaborador.find({ gestorId: req.userId });
+        let ordenar = req.query.ordenar;
+
+        let ordem = 1;
+        if (ordenar === 'desc') {
+            ordem = -1;
+        }   
+
+        const colaboradores = await Colaborador.find({ gestorId: req.userId }).sort({ nome: ordem });
 
         res.status(200).json(colaboradores);
     } catch (error) {
@@ -56,4 +97,4 @@ const ColaboradoresDoGestor = async (req, res) => {
     }
 };
 
-export { CadastrarColaborador, ColaboradoresDoGestor, getColaborador };
+export { CadastrarColaborador, ColaboradoresDoGestor, getColaborador, Login };

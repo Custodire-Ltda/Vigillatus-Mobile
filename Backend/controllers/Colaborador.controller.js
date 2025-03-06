@@ -6,6 +6,12 @@ const CadastrarColaborador = async (req, res) => {
     try {
         const { nome, email, telefone, setor, cargo, registro } = req.body;
 
+        const emailExistente = await Colaborador.findOne({ email });
+
+        if (emailExistente) {
+            return res.status(400).json({ message: 'email já em uso' })
+        }
+
         let novoColaborador = {
             nome,
             email,
@@ -36,9 +42,9 @@ const CadastrarColaborador = async (req, res) => {
 const Login = async (req, res) => {
     try {
         const { nome, email } = req.body;
-
+        
         const colaborador = await Colaborador.findOne({ email });
-
+        
         if (!colaborador) {
             return res.status(400).json({ message: 'Email não encontrado' });
         }
@@ -46,7 +52,7 @@ const Login = async (req, res) => {
         const nomeValido = nome == colaborador.nome;
 
         if (!nomeValido) {
-            return res.status(400).json({ message: 'Senha incorreta' });
+            return res.status(400).json({ message: 'Credenciais incorretas' });
         }
 
         // Gera um token JWT com as informações do colaborador e define a expiração

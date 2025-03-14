@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container:{
         width:"90%",
-        height:"100%",
+        height:"75%",
     },
     subNavbar: {
         backgroundColor:'#333333',
@@ -22,10 +22,15 @@ const styles = StyleSheet.create({
     body:{
         backgroundColor:'#FFFFFF',
         width:"100%",
-        height: "100%",
         borderBottomLeftRadius: 20, 
         borderBottomRightRadius: 20,
+        flex:1,
     },
+    horizontalLine: {
+        borderBottomColor: '#B5B5B5',
+        borderBottomWidth: 1,
+        width: "95%",
+      },
 
 });
 

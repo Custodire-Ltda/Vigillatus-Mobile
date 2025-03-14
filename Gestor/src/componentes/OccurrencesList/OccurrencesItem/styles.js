@@ -1,50 +1,34 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const { width } = Dimensions.get("window");
+const imageSize = width * 0.25;
 
 const styles = StyleSheet.create({
     container:{
         alignItems:'center',
         width:"100%",
-        height:"auto",
     },
     box:{
         flexDirection: "row",
-        margin:20,
         alignItems: 'center',
         width:"90%",
-        justifyContent: 'space-between',
+        justifyContent: 'space-between', 
+        padding:"3%"
     },
     imageBox:{
         flexDirection:"row", 
-        width:"40%"
+        width:"40%",
+        justifyContent:"center",
     },
     image:{
         resizeMode:"contain",
-        width:100,
+        width:imageSize,
+        height:imageSize
     },
     textBox:{
-        flexDirection:"row",
-        justifyContent: 'space-between', 
-        marginBottom: 5,
-        width:"75%"
+        width:"60%",
+        alignItems:"center",
     }, 
-     grayText: {
-        color: '#B5B5B5', 
-        fontSize:18,
-        fontFamily:"Roboto",
-         fontWeight: 'bold'
-      },
-     blackText: {
-        color: '#000000', 
-        fontSize:18,
-        fontFamily:"Roboto",
-        fontWeight: 'bold'
-      },
-      horizontalLine: {
-        borderBottomColor: '#B5B5B5',
-        borderBottomWidth: 1,
-        width: "95%",
-        height: 1,
-      },
 });
 
 export default styles

@@ -1,8 +1,8 @@
 export const fetchOccurrencesData = async () => {
   try {
-    const response = await fetch("https://run.mocky.io/v3/48734b40-1b52-4d6a-8ce9-a0e3cf4b67e5");
+    const response = await fetch("https://run.mocky.io/v3/2900cbdc-dce0-450b-be8c-da321b16bc57");
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("Erro na requisição: ${response.status} - ${response.statusText}");
     }
     return await response.json();
   } catch (error) {

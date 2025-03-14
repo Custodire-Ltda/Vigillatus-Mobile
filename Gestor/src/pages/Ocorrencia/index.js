@@ -2,8 +2,13 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import globalStyles from "../../Styles/globalStyles";
 import Styles from "./styles.js";
+import { useRoute } from "@react-navigation/native";
+import InfoRow from "../../componentes/InfoRow/index.js";
 
-export default function Ocorrencia() {
+export default function Ocorrencia({ navigation }) {
+  const route = useRoute();
+  const { item } = route.params;
+
   return (
     <View style={globalStyles.container}>
       <View style={Styles.body}>
@@ -14,42 +19,21 @@ export default function Ocorrencia() {
           />
         </View>
         <View style={Styles.bodyText}>
-          <View style={Styles.textOccurrence}>
-            <Text style={Styles.grayText}>Setor:</Text>
-            <Text style={Styles.blackText}>Caldeira</Text>
-          </View>
+          <InfoRow label="Setor" value={item.setor} spaceStyle={{ justifyContent:"space-between"}} />
           <View style={Styles.horizontalLine} />
-          <View style={Styles.textOccurrence}>
-            <Text style={Styles.grayText}>Camêra:</Text>
-            <Text style={Styles.blackText}>2565F</Text>
-          </View>
+          <InfoRow label="Camêra" value={item.camera} spaceStyle={{ justifyContent:"space-between"}} />
           <View style={Styles.horizontalLine} />
-          <View style={Styles.textOccurrence}>
-            <Text style={Styles.grayText}>Data:</Text>
-            <Text style={Styles.blackText}>15/02/2025</Text>
-          </View>
+          <InfoRow label="Data" value={item.data} spaceStyle={{ justifyContent:"space-between"}} />
           <View style={Styles.horizontalLine} />
-          <View style={Styles.textOccurrence}>
-            <Text style={Styles.grayText}>Hora:</Text>
-            <Text style={Styles.blackText}>14:25</Text>
-          </View>
+          <InfoRow label="Hora" value={item.hora} spaceStyle={{ justifyContent:"space-between"}} />
           <View style={Styles.horizontalLine} />
-          <View style={Styles.textOccurrence}>
-            <Text style={Styles.grayText}>Colaborador:</Text>
-            <Text style={Styles.blackText}>João Marcelo de Lima</Text>
-          </View>
+          <InfoRow label="Colaborador"  value={item.nomeColaborador} spaceStyle={{ justifyContent:"space-between"}} />
           <View style={Styles.horizontalLine} />
-          <View style={Styles.textOccurrence}>
-            <Text style={Styles.grayText}>Respónsavel:</Text>
-            <Text style={Styles.blackText}>Luana Batista</Text>
-          </View>
+          <InfoRow label="Responsável" value={item.nome} spaceStyle={{ justifyContent:"space-between"}} />
           <View style={Styles.horizontalLine} />
-          <View style={Styles.textOccurrence}>
-            <Text style={Styles.grayText}>Status:</Text>
-            <Text style={Styles.blackText}>Em análise</Text>
-          </View>
+          <InfoRow label="Status" value={item.status} spaceStyle={{ justifyContent:"space-between"}} />
         </View>
-      </View> 
+      </View>
     </View>
   );
 }

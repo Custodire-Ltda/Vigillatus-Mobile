@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
-import { fetchOccurrencesData } from "../../API/api.js";
-import Styles from "./styles";
+import { View, Text, FlatList } from "react-native";
 import globalStyles from "../../Styles/globalStyles";
+import Notification from "../../componentes/Notification"
+import Search from "../../componentes/ExpansiveSearch"
 import OccurrencesList from "../../componentes/OccurrencesList/index.js";
-import Search from "../../componentes/ExpansiveSearch";
-import Notification from "../../componentes/Notification";
+import { fetchOccurrencesData } from "../../API/api.js";
 
 export default function Ocorrencias() {
   const [occurrences, setOccurrences] = useState([]);
@@ -16,24 +15,20 @@ export default function Ocorrencias() {
       try {
         const data = await fetchOccurrencesData();
         setOccurrences(data);
-        setFilteredOccurrences(data);
+        
       } catch (error) {
         console.error("Error fetching occurrences data:", error);
       }
     };
-    getOccurrencesData();
-  }, []);  
 
+    getOccurrencesData();
+  }, []);
 
   return (
     <View style={globalStyles.container}>
-      <View style={Styles.header}>
-        <Search results={occurrences} setFilteredResults={setFilteredOccurrences} />
-        <Notification />
-      </View>
-      <View style={Styles.body}>
+              <Search results={occurrences} setFilteredResults={setFilteredOccurrences} />
+      <Notification/>
       <OccurrencesList title={<Text>Ocorrências</Text>} data={filteredOccurrences} />
-      </View>
     </View>
   );
 }

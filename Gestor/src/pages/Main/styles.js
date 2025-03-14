@@ -7,12 +7,6 @@ const styles = StyleSheet.create({
         width: "90%",
         height: 2,
       },
-      bodyCollborator:{
-        backgroundColor:'#FFFFFF',
-        width:"90%",
-        height:"40%",
-        borderRadius:20,
-      },
       containerInfo:{
         width:"100%",
         height:"92%",
@@ -24,16 +18,12 @@ const styles = StyleSheet.create({
         height:"100%",
         alignItems:"center"
       },
-      title:{
-        color: '#333333',
-        fontSize: 18,
+      title: {
+        color: "#333333",
+        fontSize: 25,
         fontFamily: "Roboto",
-        fontWeight: 'bold',
+        fontWeight: "bold",
       },
-      collaboratorData:{
-        flexDirection:"row",
-        margin:"5%",
-      }, 
       grayText: {
          color: '#B5B5B5', 
          fontSize:18,
@@ -51,11 +41,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         marginLeft: 10, 
       },
-      image: {
-        width: "40%", 
-        height: "90%", 
-        resizeMode: "contain",
-      },
       text: {
         color: "#FFFFFF",
         fontSize: 18,
@@ -63,6 +48,16 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginVertical: "3%",
       },
+      bodyCard: {
+        width: "100%",
+        height: "25%",
+        alignItems:"center"
+
+      },
+      body:{
+        width: "100%",
+        height:"auto",
+      }
 
 });
 

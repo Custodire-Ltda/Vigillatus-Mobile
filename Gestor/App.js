@@ -33,8 +33,6 @@ function Tabs() {
     tabBar={(props)=> <CustomTabBar {...props}/>}
   > 
       <Tab.Screen name="Main" component={Main} options={{ headerShown: false, tabBarIcon:"house-chimney"}} />
-      <Tab.Screen name="Colabordores" component={Colaboradores} options={{ headerShown: false, tabBarIcon:"user-large"}} />
-      <Tab.Screen name="Setores" component={Setores} options={{ headerShown: false, tabBarIcon:"video"}} />
       <Tab.Screen name="Ocorrencias" component={Ocorrencias} options={{ headerShown: false, tabBarIcon:"helmet-safety" }}/>
     </Tab.Navigator>
   );

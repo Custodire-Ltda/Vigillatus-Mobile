@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 import Styles from "./styles.js";
-
-export default function OcorrencesItem({ setor, data, status }) {
+import InfoRow from "../../InfoRow/index.js"
+export default function OcorrencesItem({ setor, data, status, imageOccurence }) {
 
   return (
     <View>
@@ -14,22 +14,12 @@ export default function OcorrencesItem({ setor, data, status }) {
                   source={require("../../../images/occurrenceImage.png")}
                 />
               </View>
-              <View>
-                <View style={Styles.textBox}>
-                  <Text style={Styles.grayText}>Setor:</Text>
-                  <Text style={Styles.blackText}>{setor}</Text>
-                </View>
-                <View style={Styles.textBox}>
-                  <Text style={Styles.grayText}>Data:</Text>
-                  <Text style={Styles.blackText}>{data}</Text>
-                </View>
-                <View style={Styles.textBox}>
-                  <Text style={Styles.grayText}>Status:</Text>
-                  <Text style={Styles.blackText}>{status}</Text>
-                </View>
+              <View style={Styles.textBox}>
+                <InfoRow label="Setor" value={setor} blackStyle={{ marginLeft: "5%" }} />
+                <InfoRow label="Data" value={data} blackStyle={{ marginLeft: "5%" }} />
+                <InfoRow label="Status" value={status} blackStyle={{ marginLeft: "5%" }} />
               </View>
             </View>
-            <View style={Styles.horizontalLine} />
           </View>
     </View>
   );

@@ -2,16 +2,24 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container:{
+        backgroundColor:"#333333",
+        borderRadius:20,
+        alignItems:"center",
+        justifyContent:"center",
+        margin:10,
+    },
+    containerClosed:{
         width:60,
         height:60,
         backgroundColor:"#333333",
         borderRadius:20,
         alignItems:"center",
-        justifyContent:"center",
+        justifyContent:"center",   
     },
     containerPressed:{
         flex:1,
         height:60,
+        width:'100%',
         backgroundColor:"white",
         borderRadius:20,
         borderWidth:2,

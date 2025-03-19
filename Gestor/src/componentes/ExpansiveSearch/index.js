@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, TouchableOpacity, TextInput } from "react-native";
 import Styles from "./styles.js";
+import globalStyles from "../../Styles/globalStyles";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 
 export default function Search({ results, setFilteredResults }) {
@@ -32,9 +33,10 @@ export default function Search({ results, setFilteredResults }) {
   }, [searchText, results]);
 
   return (
+    <View style={Styles.container}>
     <TouchableOpacity
       onPress={handlePress}
-      style={pressed ? Styles.containerPressed : Styles.container}
+      style={pressed ? Styles.containerPressed : Styles.containerClosed}
     >
       <View style={Styles.body}>
         {isVisible && (
@@ -52,5 +54,6 @@ export default function Search({ results, setFilteredResults }) {
         />
       </View>
     </TouchableOpacity>
+    </View>
   );
 }

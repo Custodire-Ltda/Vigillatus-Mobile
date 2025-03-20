@@ -12,26 +12,4 @@ export const fetchOccurrencesData = async () => {
 };
 
 
-export const fetchGraphData = async () => {
-  try {
-    const response = await fetch("http://localhost:5000/GraficoOcorrenciasPorSetor", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        setor: ['Setor A', 'Setor B', 'Setor C'],
-        ocorrencias: [10, 20, 30],
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Erro na requisição do gráfico: ${response.status} - ${response.statusText}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching graph data:", error);
-    throw error;
-  }
-};
 

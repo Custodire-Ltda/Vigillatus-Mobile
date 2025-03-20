@@ -20,6 +20,7 @@
     "react": "18.3.1",
     "react-native": "0.76.6",
     "react-native-chart-kit": "^6.12.0",
+    "react-native-charts-wrapper": "^0.6.0",
     "react-native-gesture-handler": "^2.22.0",
     "react-native-plotly": "^6.0.0",
     "react-native-reanimated": "^3.16.7",

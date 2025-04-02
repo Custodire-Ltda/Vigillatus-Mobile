@@ -4,6 +4,7 @@ import Styles from "./styles";
 import globalStyles from "../../Styles/globalStyles";
 import Card from "../../componentes/Card/index";
 import Profile from "../../componentes/Profile"
+import GraphComponent from "../../componentes/Graphic";  // Importa o componente de gráfico
 import { fetchOccurrencesData } from "../../API/api";
 
 export default function Main({ navigation }) {
@@ -22,45 +23,19 @@ export default function Main({ navigation }) {
     getOccurrencesData();
   }, []);
 
-
   return (
     <View style={globalStyles.container}>
       <Profile />
       <View style={Styles.horizontalLine} />
       <View style={Styles.body}>
-      <View style={{ alignItems: "start", width: "90%", margin: "2%" }}>
+        <View style={{ alignItems: "start", width: "90%", margin: "2%" }}>
           <Text style={Styles.title}> Últimas Ocorrências:</Text>
-      </View>
-      <View style={Styles.bodyCard}>
-          <FlatList
-            data={occurrences}
-            keyExtractor={(item) => item.id.toString()}
-            horizontal
-            snapToOffsets={Array.from({ length: occurrences.length }).map(
-              (_, i) => i * (350 - 20) + i * 40
-            )}
-            contentContainerStyle={{ paddingHorizontal: 10 }}
-            scrollEventThrottle={16}
-            snapToAlignment="center"
-            decelerationRate="fast"
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item, index }) => {
-              if (index < 3) {
-                return (
-                  <TouchableOpacity
-                    style={{ marginHorizontal: 10, alignItems: "center" }}
-                    onPress={() => navigation.navigate("Ocorrencia", { item })}
-                  >
-                    <Card {...item} />
-                  </TouchableOpacity>
-                );
-              }
-              return null;
-            }}
-          />
         </View>
-      <View style={Styles.containerInfo}></View>
+        
+        {/* <View style={Styles.containerInfo}></View> */}
+        
+        <GraphComponent />
       </View>
-    </View>
+    </View> 
   );
 }

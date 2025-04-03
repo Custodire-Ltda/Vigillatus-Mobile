@@ -5,9 +5,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import CustomTabBar from "./src/componentes/CustomTabBar";
 import Main from "./src/pages/Main";
 import Ocorrencias from "./src/pages/Ocorrencias";
-import Colaboradores from "./src/pages/Colaboradores";
-import Setores from "./src/pages/Setores";
 import Ocorrencia from "./src/pages/Ocorrencia";
+import Login from "./src/pages/Login"
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -52,6 +51,11 @@ export default function App() {
           },
         }}
       >
+        <Stack.Screen
+          name="Login"
+          component={Login} 
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="Ocorrencias"
           component={Tabs}

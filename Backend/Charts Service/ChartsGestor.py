@@ -36,36 +36,18 @@ def GraficoOcorrenciasPorSetor():
     
     df = pd.DataFrame(data)
     
-    # Define uma lista de cores para as barras
-    colors = ['#1f77b4', '#ff7f0e', '#2ca02c']
-    
-    fig = px.bar(df, x="setor", y="Ocorrências", 
-                #  title="Ocorrências por Setor", 
-                 labels={},
-                 color="setor",  # Usar a coluna 'setor' para as cores
-                 color_discrete_sequence=colors)  # Define a sequência de cores
+    fig = px.bar(df, x="setor", y="Occurences")
     
     fig.update_layout(
-        paper_bgcolor='rgba(0,0,0,0)',  # Define fundo transparente
+        paper_bgcolor='rgba(0,0,0,0)',
         autosize=True,
-        # width=400,
-        # height=None,
         font=dict(size=24),
         xaxis_title="",
         yaxis_title="",
-        # xaxis_tickvals=[],  # Remove os rótulos do eixo X
-        # yaxis_tickvals=[],
-        showlegend=False,  # Mostra a legenda
-        legend_title_text='Setores',  # Título da legenda
-        dragmode=False  # Remove os botões de zoom e seleção
+        showlegend=False,
+        legend_title_text='Setores',
+        dragmode=False  
     )
-    
-    # fig.update_traces(
-    #     text=df['setor'],  # Define o texto a ser exibido
-    #     textposition='inside',  # Coloca o texto dentro das barras
-    #     textangle=-45,  # Inclina o texto em 45 graus
-    #     textfont=dict(color='white')  # Define a cor do texto
-    # )
     
     graphJSON = plotly.io.to_json(fig)
     return graphJSON
@@ -84,18 +66,13 @@ def GraficoOcorrenciasPorColaborador():
     fig = px.bar(df, x="quantidade", y="_id", orientation='h', title="Ocorrências por Colaborador", labels={"quantidade": "Quantidade de Ocorrências", "_id": "Colaborador"})
     
     fig.update_layout(
-        paper_bgcolor='rgba(0,0,0,0)',  # Define fundo transparente
+        paper_bgcolor='rgba(0,0,0,0)',
         autosize=True,
-        # width=400,
-        # height=None,
         font=dict(size=24),
         xaxis_title="",
         yaxis_title="",
-        # xaxis_tickvals=[],  # Remove os rótulos do eixo X
-        # yaxis_tickvals=[],
-        showlegend=False,  # Mostra a legenda
-        # legend_title_text='Setores',  # Título da legenda
-        dragmode=False  # Remove os botões de zoom e seleção
+        showlegend=False,
+        dragmode=False 
     )
     
     graphJSON = plotly.io.to_json(fig, pretty=False)

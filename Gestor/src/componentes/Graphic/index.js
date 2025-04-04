@@ -84,6 +84,7 @@ const GraphComponent = () => {
             margin: 0;
             padding: 0;
             overflow: hidden;
+            background-color: #E5E5E5;
           }
           #${divId} {
             height: 100vh;

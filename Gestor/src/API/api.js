@@ -1,6 +1,16 @@
+import axios from 'axios';
+
+export const api = axios.create({
+  baseURL: 'http://10.0.2.2:5000',
+  timeout: 10000,
+  headers: {
+      'Content-Type': 'application/json'
+  }
+})
+
 export const fetchOccurrencesData = async () => {
   try {
-    const response = await fetch("http://10.0.2.2:5000/GraficoOcorrenciasPorSetor", { method: "POST" }); // todo: Rota temporária! Mudar dps
+    const response = await fetch("http://10.0.2.2:3000/GraficoOcorrenciasPorSetor", { method: "POST" }); // todo: Rota temporária! Mudar dps
     if (!response.ok) {
       throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
     }
@@ -11,10 +21,9 @@ export const fetchOccurrencesData = async () => {
   }
 };
 
-
 export const fetchGraphData = async () => {
   try {
-    const response = await fetch("http://10.0.2.2:5000/GraficoOcorrenciasPorColaborador", { // todo: Rota temporária! Mudar dps
+    const response = await fetch("http://10.0.2.2:3000/GraficoOcorrenciasPorColaborador", { // todo: Rota temporária! Mudar dps
       method: "POST",
       headers: {
         "Content-Type": "application/json",

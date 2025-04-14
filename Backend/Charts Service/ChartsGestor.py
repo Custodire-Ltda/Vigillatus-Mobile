@@ -29,9 +29,9 @@ def plot_test():
 def GraficoOcorrenciasPorSetor():
     # data = request.json
     data = [
-        {"setor": "Caldeira", "Ocorrências": 140},
-        {"setor": "Elétrica", "Ocorrências": 16},
-        {"setor": "Mecânica", "Ocorrências": 200}
+        {"setor": "Caldeira", "Occurences": 1},
+        {"setor": "Elétrica", "Occurences": 16},
+        {"setor": "Mecânica", "Occurences": 10}
     ]
     
     df = pd.DataFrame(data)
@@ -77,3 +77,6 @@ def GraficoOcorrenciasPorColaborador():
     
     graphJSON = plotly.io.to_json(fig, pretty=False)
     return graphJSON
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=3000)

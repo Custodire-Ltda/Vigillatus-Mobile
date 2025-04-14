@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
 import {
   View,
-  Text,
   Image,
   TextInput,
   KeyboardAvoidingView,
   Animated,
-  TouchableOpacity,
+  Alert
 } from "react-native";
 import Styles from "./styles";
 import globalStyles from "../../Styles/globalStyles";
 import Button from "../../componentes/Button";
+import { api } from "../../API/api";
+import Gestor from "../../API/Gestor";
 
-
-export default function Login({navigation}){
+export default function Login({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [offset] = useState(new Animated.ValueXY({ x: 0, y: 95 }));
   const [opacity] = useState(new Animated.Value(0));
 
@@ -23,38 +26,102 @@ export default function Login({navigation}){
         toValue: 0,
         speed: 4,
         bounciness: 20,
+        useNativeDriver: true
       }),
       Animated.timing(opacity, {
         toValue: 1,
         duration: 200,
+        useNativeDriver: true
       }),
     ]).start();
   }, []);
 
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Erro', 'Preencha todos os campos');
+      return;
+    }
+  
+    setLoading(true);
+    
+    try {
+      const res = await api.post('/Gestor/Login', {
+        email: email.trim(),
+        senha: password,
+      });
+
+      if (res.data && res.data.gestor && res.data.token) {
+        const gestorService = new Gestor();
+        
+        await gestorService.setToken(res.data.token);
+        await gestorService.loggedGestor(res.data.gestor);
+
+        const isLoggedIn = await gestorService.isLoggedIn()
+        console.log(isLoggedIn)
+
+
+        navigation.navigate('Ocorrencias');
+      } else {
+        throw new Error('Dados incompletos na resposta');
+      }
+    } catch (error) {
+      const errorMessage = error.response?.data?.message 
+        || error.message 
+        || 'Falha no login';
+      
+      Alert.alert('Erro', errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <KeyboardAvoidingView style={[globalStyles.container, Styles.container]}>
+    <KeyboardAvoidingView 
+      style={[globalStyles.container, Styles.container]}
+      behavior="padding"
+    >
       <View style={Styles.containerImage}>
-        <Image source={require("../../images/Logo.png")} style={Styles.logo} />
+        <Image 
+          source={require("../../images/Logo.png")} 
+          style={Styles.logo} 
+          resizeMode="contain"
+        />
       </View>
+
       <Animated.View
         style={[
           Styles.containerInput,
-          { opacity: opacity, transform: [{ translateY: offset.y }] },
+          { 
+            opacity: opacity, 
+            transform: [{ translateY: offset.y }] 
+          },
         ]}
       >
         <TextInput
           style={Styles.input}
-          placeholder="Emai"
-          autoCorrect={false}
-          onChange={() => {}}
+          placeholder="Email"
+          autoCapitalize="none"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
+          editable={!loading} // Bloqueia durante o carregamento
         />
+
         <TextInput
           style={Styles.input}
           placeholder="Senha"
-          autoCorrect={false}
-          onChange={() => {}}
+          secureTextEntry
+          autoCapitalize="none"
+          value={password}
+          onChangeText={setPassword}
+          editable={!loading}
         />
-          <Button page='Ocorrencias' navigation={navigation} text='Acessar' icon={null}/>
+
+        <Button 
+          text='Acessar'
+          onPress={handleLogin}
+          navigation={navigation}
+        />
       </Animated.View>
     </KeyboardAvoidingView>
   );

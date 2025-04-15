@@ -15,8 +15,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: 'center',
     },
-    imageProfile:{
-        borderRadius:100,
+    imageProfile: {
+        width: 65,
+        height: 65,
+        borderRadius: 50,
+        backgroundColor: '#CCCCCC'
     },
     textProfile:{
         fontFamily:'Robote',

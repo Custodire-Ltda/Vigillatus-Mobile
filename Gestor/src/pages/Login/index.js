@@ -56,10 +56,6 @@ export default function Login({ navigation }) {
         await gestorService.setToken(res.data.token);
         await gestorService.loggedGestor(res.data.gestor);
 
-        const isLoggedIn = await gestorService.isLoggedIn()
-        console.log(isLoggedIn)
-
-
         navigation.navigate('Ocorrencias');
       } else {
         throw new Error('Dados incompletos na resposta');
@@ -104,7 +100,7 @@ export default function Login({ navigation }) {
           keyboardType="email-address"
           value={email}
           onChangeText={setEmail}
-          editable={!loading} // Bloqueia durante o carregamento
+          editable={!loading}
         />
 
         <TextInput

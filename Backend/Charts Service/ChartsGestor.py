@@ -30,9 +30,12 @@ def GraficoOcorrenciasPorSetor():
     data = request.json
     
     # data = [
-    #     {"setor": "Caldeira", "Occurences": 1},
-    #     {"setor": "Elétrica", "Occurences": 16},
-    #     {"setor": "Mecânica", "Occurences": 10}
+    #     {"setor": "Caldeira", "Ocorrências": 1},
+    #     {"setor": "Elétrica", "Ocorrências": 16},
+    #     {"setor": "Mecânica", "Ocorrências": 10},
+    #     {"setor": "Caldeiraa", "Ocorrências": 2},
+    #     {"setor": "Elétricaa", "Ocorrências": 17},
+    #     {"setor": "Mecânicaa", "Ocorrências": 11},
     # ]
     
     df = pd.DataFrame(data)
@@ -58,15 +61,17 @@ def GraficoOcorrenciasPorColaborador():
     data = request.json
 
     # data = [
-    #     {"_id": "João Fonseca", "quantidade": 15},
-    #     {"_id": "Kim Wexler", "quantidade": 10},
-    #     {"_id": "Jimmy McGill", "quantidade": 5},
-    #     {"_id": "Howard Hamlin", "quantidade": 3},
-    #     {"_id": "Walter White", "quantidade": 4}
+    #     {"setor": "Caldeira", "Ocorrências": 1},
+    #     {"setor": "Elétrica", "Ocorrências": 16},
+    #     {"setor": "Mecânica", "Ocorrências": 10},
+    #     {"setor": "Caldeiraa", "Ocorrências": 2},
+    #     {"setor": "Elétricaa", "Ocorrências": 17},
+    #     {"setor": "Mecânicaa", "Ocorrências": 11},
     # ]
     
     df = pd.DataFrame(data)
-    fig = px.bar(df, x="quantidade", y="_id", orientation='h', labels={"quantidade": "Quantidade de Ocorrências", "_id": "Colaborador"})
+    
+    fig = px.bar(df, x="_id", y="quantidade")
     
     fig.update_layout(
         paper_bgcolor='rgba(0,0,0,0)',
@@ -74,14 +79,12 @@ def GraficoOcorrenciasPorColaborador():
         font=dict(size=24),
         xaxis_title="",
         yaxis_title="",
-        height=700,
-        width=1000,
-        margin=dict(l=150, r=50, t=30, b=30),
         showlegend=False,
-        dragmode=False 
+        legend_title_text='Setores',
+        dragmode=False  
     )
     
-    graphJSON = plotly.io.to_json(fig, pretty=False)
+    graphJSON = plotly.io.to_json(fig)
     return graphJSON
 
 if __name__ == '__main__':

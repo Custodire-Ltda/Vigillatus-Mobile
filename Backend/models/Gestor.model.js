@@ -25,6 +25,6 @@ gestoresSchema.pre('save', async function(next){
     next(); // Chama a próxima função middleware
 });
 
-const Gestor = mongoose.model("Gestores", gestoresSchema);
+const Gestor = mongoose.model("gestores", gestoresSchema);
 
 export default Gestor;

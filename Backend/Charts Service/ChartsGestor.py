@@ -27,16 +27,17 @@ def plot_test():
 
 @app.route('/GraficoOcorrenciasPorSetor', methods=['GET', 'POST'])
 def GraficoOcorrenciasPorSetor():
-    # data = request.json
-    data = [
-        {"setor": "Caldeira", "Occurences": 1},
-        {"setor": "Elétrica", "Occurences": 16},
-        {"setor": "Mecânica", "Occurences": 10}
-    ]
+    data = request.json
+    
+    # data = [
+    #     {"setor": "Caldeira", "Occurences": 1},
+    #     {"setor": "Elétrica", "Occurences": 16},
+    #     {"setor": "Mecânica", "Occurences": 10}
+    # ]
     
     df = pd.DataFrame(data)
     
-    fig = px.bar(df, x="setor", y="Occurences")
+    fig = px.bar(df, x="setor", y="Ocorrências")
     
     fig.update_layout(
         paper_bgcolor='rgba(0,0,0,0)',
@@ -54,16 +55,18 @@ def GraficoOcorrenciasPorSetor():
 
 @app.route('/GraficoOcorrenciasPorColaborador', methods=['GET', 'POST'])
 def GraficoOcorrenciasPorColaborador():
-    data = [
-        {"_id": "João Fonseca", "quantidade": 15},
-        {"_id": "Kim Wexler", "quantidade": 10},
-        {"_id": "Jimmy McGill", "quantidade": 5},
-        {"_id": "Howard Hamlin", "quantidade": 3},
-        {"_id": "Walter White", "quantidade": 4}
-    ]
+    data = request.json
+
+    # data = [
+    #     {"_id": "João Fonseca", "quantidade": 15},
+    #     {"_id": "Kim Wexler", "quantidade": 10},
+    #     {"_id": "Jimmy McGill", "quantidade": 5},
+    #     {"_id": "Howard Hamlin", "quantidade": 3},
+    #     {"_id": "Walter White", "quantidade": 4}
+    # ]
     
     df = pd.DataFrame(data)
-    fig = px.bar(df, x="quantidade", y="_id", orientation='h', title="Ocorrências por Colaborador", labels={"quantidade": "Quantidade de Ocorrências", "_id": "Colaborador"})
+    fig = px.bar(df, x="quantidade", y="_id", orientation='h', labels={"quantidade": "Quantidade de Ocorrências", "_id": "Colaborador"})
     
     fig.update_layout(
         paper_bgcolor='rgba(0,0,0,0)',
@@ -71,6 +74,9 @@ def GraficoOcorrenciasPorColaborador():
         font=dict(size=24),
         xaxis_title="",
         yaxis_title="",
+        height=700,
+        width=1000,
+        margin=dict(l=150, r=50, t=30, b=30),
         showlegend=False,
         dragmode=False 
     )
@@ -79,4 +85,4 @@ def GraficoOcorrenciasPorColaborador():
     return graphJSON
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3000)
+    app.run(host='0.0.0.0', port=3000, debug=True)

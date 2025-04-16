@@ -1,7 +1,6 @@
 import Setor from "../models/Setor.model.js";
 
 export async function criarSetores() {
-
     const setorCount = await Setor.countDocuments();
     if (setorCount === 0) {
         const setores = [

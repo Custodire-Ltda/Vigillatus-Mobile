@@ -3,8 +3,7 @@ import { View, ActivityIndicator, Text, Dimensions, ScrollView } from 'react-nat
 import { WebView } from 'react-native-webview';
 import { fetchOccurrencesData, fetchGraphData } from '../../API/api';
 import base64js from 'base64-js';
-
-const screenWidth = Dimensions.get('window').width;
+import Gestor from '../../API/Gestor';
 
 const decodeBData = (bdata, dtype) => { // Transforma o base64 do JSON para array de inteiros.
   const bytes = base64js.toByteArray(bdata);
@@ -48,13 +47,17 @@ const GraphComponent = () => {
     });
   };
   
+  const gestorService = new Gestor();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseOcurrences = await fetchOccurrencesData();
-        const responseOccurencesColaborador = await fetchGraphData();
-  
-        // 🔥 Converte os dados para um formato que React Native entende
+        const gestorInfo = await gestorService.getLoggedGestor();
+        const gestorToken = await gestorService.getToken();
+
+        const responseOcurrences = await fetchOccurrencesData(gestorInfo._id, gestorToken);
+        const responseOccurencesColaborador = await fetchGraphData(gestorInfo._id, gestorToken);
+
         responseOcurrences.data = convertPlotlyData(responseOcurrences.data);
         responseOccurencesColaborador.data = convertPlotlyData(responseOccurencesColaborador.data);
   
@@ -88,8 +91,11 @@ const GraphComponent = () => {
           }
           #${divId} {
             height: 100vh;
-            width: 100%;
+            width: 100vw;
             overflow: hidden;
+            display: flex;
+            justify-content: start;
+            align-items: start;
           }
         </style>
         <body style="margin:0; padding:0;">

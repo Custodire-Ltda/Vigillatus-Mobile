@@ -5,7 +5,14 @@ import InfoRow from "../../InfoRow/index.js";
 
 export default function OcorrencesItem({ setor, status, imagePath, timestamp }) {
   const date = new Date(timestamp);
-  const formattedDate = date.toLocaleDateString('pt-BR')
+
+  const formattedDateTime = date.toLocaleString('pt-BR', { 
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit', 
+    minute: '2-digit'
+  });
 
   return (
     <View>
@@ -19,7 +26,7 @@ export default function OcorrencesItem({ setor, status, imagePath, timestamp }) 
               </View>
               <View style={Styles.textBox}>
                 <InfoRow label="Setor" value={setor} blackStyle={{ marginLeft: "5%" }} />
-                <InfoRow label="Data" value={formattedDate} blackStyle={{ marginLeft: "5%" }} />
+                <InfoRow label="Data" value={formattedDateTime} blackStyle={{ marginLeft: "5%" }} />
                 <InfoRow label="Status" value={status} blackStyle={{ marginLeft: "5%" }} />
               </View>
             </View>

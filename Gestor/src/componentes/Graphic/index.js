@@ -20,6 +20,7 @@ const decodeBData = (bdata, dtype) => { // Transforma o base64 do JSON para arra
       return numbers;
   }
 };
+
 const GraphComponent = () => {
   const [plotOccurences, setPlotOccurences] = useState(null);
   const [plotOccurencesColaborador, setPlotOccurencesColaborador] = useState(null);
@@ -91,7 +92,7 @@ const GraphComponent = () => {
           }
           #${divId} {
             height: 100vh;
-            width: 100vw;
+            width: 100%;
             overflow: hidden;
             display: flex;
             justify-content: start;

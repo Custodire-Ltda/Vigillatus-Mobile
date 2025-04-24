@@ -1,8 +1,11 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 import Styles from "./styles.js";
-import InfoRow from "../../InfoRow/index.js"
-export default function OcorrencesItem({ setor, data, status, imageOccurence }) {
+import InfoRow from "../../InfoRow/index.js";
+
+export default function OcorrencesItem({ setor, status, imagePath, timestamp }) {
+  const date = new Date(timestamp);
+  const formattedDate = date.toLocaleDateString('pt-BR')
 
   return (
     <View>
@@ -16,7 +19,7 @@ export default function OcorrencesItem({ setor, data, status, imageOccurence }) 
               </View>
               <View style={Styles.textBox}>
                 <InfoRow label="Setor" value={setor} blackStyle={{ marginLeft: "5%" }} />
-                <InfoRow label="Data" value={data} blackStyle={{ marginLeft: "5%" }} />
+                <InfoRow label="Data" value={formattedDate} blackStyle={{ marginLeft: "5%" }} />
                 <InfoRow label="Status" value={status} blackStyle={{ marginLeft: "5%" }} />
               </View>
             </View>

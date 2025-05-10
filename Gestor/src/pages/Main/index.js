@@ -43,15 +43,19 @@ export default function Main({ navigation }) {
   }
 
   return (
-    <View style={globalStyles.container}>
+    <View style={[globalStyles.container, { paddingBottom: 20 }]}>
       <Profile gestorInfo={gestorInfo} gestorService={gestorService} navigation={navigation} exit={<FontAwesome6 name="arrow-right-from-bracket" size={32} />} />
+      
       <View style={Styles.horizontalLine} />
+      
       <View style={Styles.body}>
-        <View style={{ alignItems: "start", width: "90%", margin: "2%" }}>
-          <Text style={Styles.title}> Últimas Ocorrências:</Text>
+        <View style={Styles.titleContainer}>
+          <Text style={Styles.title}>Últimas Ocorrências:</Text>
         </View>
 
-        <GraphComponent />
+        <View style={Styles.graphContainer}>
+          <GraphComponent />
+        </View>
       </View>
     </View>
   );

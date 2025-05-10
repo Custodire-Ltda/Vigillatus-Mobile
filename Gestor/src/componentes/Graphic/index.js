@@ -21,6 +21,9 @@ const decodeBData = (bdata, dtype) => { // Transforma o base64 do JSON para arra
   }
 };
 
+const screenHeight = Dimensions.get('window').height;
+const graphHeight = screenHeight * 0.4;
+
 const GraphComponent = () => {
   const [plotOccurences, setPlotOccurences] = useState(null);
   const [plotOccurencesColaborador, setPlotOccurencesColaborador] = useState(null);
@@ -79,38 +82,35 @@ const GraphComponent = () => {
       <!DOCTYPE html>
       <html>
         <head>
-          <script src="https://cdn.plot.ly/plotly-latest.min.js" charset="utf-8"></script>
+          <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+          <style>
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+            #${divId} {
+              width: 100%;
+              height: 100%;
+            }
+            html, body {
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              background-color: #E5E5E5;
+            }
+          </style>
         </head>
-        <style>
-          html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #E5E5E5;
-          }
-          #${divId} {
-            height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            display: flex;
-            justify-content: start;
-            align-items: start;
-          }
-        </style>
-        <body style="margin:0; padding:0;">
-          <div id="${divId}" style="width: 100%; height: 100%;"></div>
+        <body>
+          <div id="${divId}"></div>
           <script>
-            document.addEventListener("DOMContentLoaded", function() {
-              try {
-                var data = ${JSON.stringify(data)};
-                var layout = ${JSON.stringify(layout)};
-                Plotly.newPlot('${divId}', data, layout);
-              } catch (err) {
-                document.body.innerHTML = '<h3>Falha ao renderizar gráfico.</h3>';
-                console.error('Erro no gráfico:', err);
-              }
+            Plotly.newPlot('${divId}', ${JSON.stringify(data)}, ${JSON.stringify(layout)}, {
+              responsive: true
+            });
+            
+            // Redimensionar ao girar a tela
+            window.addEventListener('resize', () => {
+              Plotly.Plots.resize('${divId}');
             });
           </script>
         </body>
@@ -135,14 +135,20 @@ const GraphComponent = () => {
       <Text style={{ margin: 10 }}>Ocorrências por Setor</Text>
       <WebView
         originWhitelist={['*']}
-        style={{ height: 420 }}
+        style={{ 
+          height: graphHeight,
+          width: '100%' 
+        }}
         source={{ html: renderGraph(plotOccurences.data, plotOccurences.layout, 'ocorrenciasPorSetor') }}
       />
 
       <Text style={{ margin: 10 }}>Ocorrências por Colaborador</Text>
       <WebView
         originWhitelist={['*']}
-        style={{ height: 420 }}
+        style={{ 
+          height: graphHeight,
+          width: '100%' 
+        }}
         source={{ html: renderGraph(plotOccurencesColaborador.data, plotOccurencesColaborador.layout, 'ocorrenciasPorColaborador') }}
       />
     </ScrollView>

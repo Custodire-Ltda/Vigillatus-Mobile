@@ -1,4 +1,5 @@
-import time, json
+import time
+import json
 from flask import Flask, request
 from flask_cors import CORS
 import plotly
@@ -9,9 +10,11 @@ app = Flask(__name__)
 
 CORS(app)
 
+
 @app.route('/time')
 def get_current_time():
     return {'time': time.time()}
+
 
 @app.route('/plot', methods=['GET', 'POST'])
 def plot_test():
@@ -25,10 +28,11 @@ def plot_test():
     graphJSONData = json.loads(graphJSON)
     return graphJSONData
 
+
 @app.route('/GraficoOcorrenciasPorSetor', methods=['GET', 'POST'])
 def GraficoOcorrenciasPorSetor():
     data = request.json
-    
+
     # data = [
     #     {"setor": "Caldeira", "Ocorrências": 1},
     #     {"setor": "Elétrica", "Ocorrências": 16},
@@ -37,24 +41,28 @@ def GraficoOcorrenciasPorSetor():
     #     {"setor": "Elétricaa", "Ocorrências": 17},
     #     {"setor": "Mecânicaa", "Ocorrências": 11},
     # ]
-    
+
     df = pd.DataFrame(data)
-    
+
     fig = px.bar(df, x="setor", y="Ocorrências")
-    
+
     fig.update_layout(
         paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
         autosize=True,
+        margin=dict(l=0, r=0, t=0, b=0),
         font=dict(size=24),
+        xaxis=dict(automargin=True),
+        yaxis=dict(automargin=True),
         xaxis_title="",
         yaxis_title="",
         showlegend=False,
-        legend_title_text='Setores',
-        dragmode=False  
+        dragmode=False
     )
-    
+
     graphJSON = plotly.io.to_json(fig)
     return graphJSON
+
 
 @app.route('/GraficoOcorrenciasPorColaborador', methods=['GET', 'POST'])
 def GraficoOcorrenciasPorColaborador():
@@ -68,24 +76,28 @@ def GraficoOcorrenciasPorColaborador():
     #     {"setor": "Elétricaa", "Ocorrências": 17},
     #     {"setor": "Mecânicaa", "Ocorrências": 11},
     # ]
-    
+
     df = pd.DataFrame(data)
-    
+
     fig = px.bar(df, x="_id", y="quantidade")
-    
+
     fig.update_layout(
         paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
         autosize=True,
+        margin=dict(l=0, r=0, t=0, b=0),
         font=dict(size=24),
+        xaxis=dict(automargin=True),
+        yaxis=dict(automargin=True),
         xaxis_title="",
         yaxis_title="",
         showlegend=False,
-        legend_title_text='Setores',
-        dragmode=False  
+        dragmode=False
     )
-    
+
     graphJSON = plotly.io.to_json(fig)
     return graphJSON
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)

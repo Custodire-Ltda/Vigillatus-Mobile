@@ -36,7 +36,7 @@ export default function OccurrencesList({ data, title }) {
       };
     
       fetchData();
-    }, []);
+  }, []);
 
   return (
     <View style={Styles.container}>

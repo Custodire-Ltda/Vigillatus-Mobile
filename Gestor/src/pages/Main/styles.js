@@ -54,10 +54,31 @@ const styles = StyleSheet.create({
         alignItems:"center"
 
       },
-      body:{
+      body: {
+        flex: 1,
         width: "100%",
-        height:"auto",
-      }
+        paddingTop: 10,
+      },
+      
+      graphContainer: {
+        flex: 1,
+        width: '100%',
+        marginTop: 10,
+      },
+      
+      titleContainer: {
+        width: "90%",
+        marginLeft: "5%",
+        marginBottom: 10,
+      },
+      
+      horizontalLine: {
+        borderBottomColor: '#333333',
+        borderBottomWidth: 1,
+        width: "90%",
+        marginVertical: 15,
+        alignSelf: 'center'
+      },
 
 });
 

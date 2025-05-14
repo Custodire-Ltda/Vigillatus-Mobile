@@ -52,7 +52,6 @@ export default function Main({ navigation }) {
         <View style={Styles.titleContainer}>
           <Text style={Styles.title}>Últimas Ocorrências:</Text>
         </View>
-
         <View style={Styles.graphContainer}>
           <GraphComponent />
         </View>

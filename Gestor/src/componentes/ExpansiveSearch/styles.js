@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     },
     containerPressed:{
         flex:1,
-        height:60,
+        height:80,
         width:'100%',
         backgroundColor:"white",
         borderRadius:20,

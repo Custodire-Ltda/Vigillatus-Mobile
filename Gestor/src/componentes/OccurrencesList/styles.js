@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container:{
         width:"90%",
-        height:"75%",
+        height:"83%",
     },
     subNavbar: {
         backgroundColor:'#333333',

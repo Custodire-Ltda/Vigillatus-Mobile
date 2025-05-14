@@ -30,7 +30,6 @@ export default function Ocorrencias() {
       <View style={styles.container}>
       <View style={styles.containerSearch}>
         <Search results={occurrences} setFilteredResults={setFilteredOccurrences} />
-        <Notification/>
       </View>
       </View>
       <OccurrencesList title={<Text>Ocorrências</Text>} data={filteredOccurrences} />

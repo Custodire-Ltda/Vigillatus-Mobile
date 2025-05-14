@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
       },
       body: {
         flex: 1,
-        width: "100%",
+        width: "90%",
         paddingTop: 10,
       },
       
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         marginTop: 10,
+        height:"80%"
       },
       
       titleContainer: {

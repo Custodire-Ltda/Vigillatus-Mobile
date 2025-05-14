@@ -22,7 +22,7 @@ const decodeBData = (bdata, dtype) => { // Transforma o base64 do JSON para arra
 };
 
 const screenHeight = Dimensions.get('window').height;
-const graphHeight = screenHeight * 0.4;
+const graphHeight = screenHeight * 0.32;
 
 const GraphComponent = () => {
   const [plotOccurences, setPlotOccurences] = useState(null);
@@ -137,7 +137,7 @@ const GraphComponent = () => {
         originWhitelist={['*']}
         style={{ 
           height: graphHeight,
-          width: '100%' 
+          width: '80%',
         }}
         source={{ html: renderGraph(plotOccurences.data, plotOccurences.layout, 'ocorrenciasPorSetor') }}
       />

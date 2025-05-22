@@ -2,8 +2,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     containerSearch:{
-        width:"80%",
-        height:"auto",
+        width:"97%",
+        height:80,
         display:'flex',
         justifyContent:'flex-end',
         flexDirection:'row',

@@ -59,7 +59,7 @@ app.listen(port, () => {
 
     /* mongodb+srv://admin:admin@vigillatus.b1syd.mongodb.net/Vigillatus?retryWrites=true&w=majority&appName=Vigillatus */
 
-    Mongoose.connect('mongodb://127.0.0.1:27017')
+    Mongoose.connect('mongodb://127.0.0.1:27017/Vigillatus')
         .then(() => {
             console.log('Connected to database');
         })

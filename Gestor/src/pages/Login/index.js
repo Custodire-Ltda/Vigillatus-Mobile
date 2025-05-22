@@ -5,7 +5,9 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Animated,
-  Alert
+  Alert,
+  TouchableOpacity,
+  Text
 } from "react-native";
 import Styles from "./styles";
 import globalStyles from "../../Styles/globalStyles";
@@ -19,6 +21,7 @@ export default function Login({ navigation }) {
   const [loading, setLoading] = useState(false);
   const [offset] = useState(new Animated.ValueXY({ x: 0, y: 95 }));
   const [opacity] = useState(new Animated.Value(0));
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     Animated.parallel([
@@ -93,6 +96,7 @@ export default function Login({ navigation }) {
           },
         ]}
       >
+
         <TextInput
           style={Styles.input}
           placeholder="Email"
@@ -103,16 +107,23 @@ export default function Login({ navigation }) {
           editable={!loading}
         />
 
+
+      <View style={Styles.passwordContainer}>
         <TextInput
-          style={Styles.input}
+          style={Styles.inputPassword}
           placeholder="Senha"
-          secureTextEntry
+          secureTextEntry={!showPassword}
           autoCapitalize="none"
           value={password}
           onChangeText={setPassword}
           editable={!loading}
         />
-
+        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+          <Text style={Styles.toggleText}>
+            {showPassword ? "Ocultar" : "Mostrar"}
+          </Text>
+        </TouchableOpacity>
+      </View>
         <Button 
           text='Acessar'
           onPress={handleLogin}

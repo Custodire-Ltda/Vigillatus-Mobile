@@ -43,10 +43,10 @@ export default function Ocorrencias() {
     <View style={globalStyles.container}>
       <View style={styles.container}>
         <View style={styles.containerSearch}>
-          {/* <Search
-            results={occurrences}
-            setFilteredResults={occurrencesList}
-          /> */}
+          <Search
+            results={filteredOccurrences}
+            setFilteredResults={setFilteredOccurrences}
+          />
         </View>
       </View>
       <OccurrencesList

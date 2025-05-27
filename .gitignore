@@ -5,6 +5,7 @@ node_modules/
 /Backend/node_modules
 /Colaborador/node_modules
 /Gestor/node_modules
+/Backend/uploads
 
 # Expo
 .expo/
